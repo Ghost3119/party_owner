@@ -87,16 +87,19 @@ if(isset($_POST['crear_cuenta'])){
 }
 ?>
 
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./assets/icons8-meeting.svg">
-    <link rel="stylesheet" href="./Styles/crear_cuenta.css">
+    <link rel="stylesheet" href="./Styles/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="icon" href="./assets/icons8-meeting.svg">
     <title>Crear Cuenta</title>
+    <link rel="stylesheet" href="./Styles/formulario2.css">
 </head>
-<body>
+<body style="background-image: url(./Images/copas.jpeg);">
     <nav class='nav-bar'>
         <a href="./index.php">
             <div class='logo'> 
@@ -105,29 +108,46 @@ if(isset($_POST['crear_cuenta'])){
             </div>
         </a>
     </nav>
-    <div class='container'>
-        <div class="formulario">
-        <form method='post'enctype='multipart/form-data'>
-            <h2>Crear Cuenta</h2>
-            
-            <label for="foto">Foto</label>
-            <input class='foto'type="file" name="foto" id="foto" accept='image/jpg'>
-            <label for="nombre">Nombre</label>
-            <input class="campo" type="text" name="nombre" placeholder="Nombre Completo" id="nombre" required>
-            <label for="correo">Correo</label>
-            <input class="campo" type="email" name="correo" placeholder="Correo" id="correo" required>
-            <label for="telefono">Telefono</label>
-            <input class="campo" type="text" name="telefono" placeholder="Telefono" id="telefono" required>
-            <label for="fecha_nacimiento">Fecha de nacimiento</label>
-            <input class="campo" type="date" name='fecha_nacimiento' id="fecha_nacimiento">
-            <label for="password">Contraseña</label>
-            <input class="campo" type="password" name="password" placeholder="Contraseña" id="password"required>
-            <label for="password2">Confirma Contraseña</label>
-            <input class="campo" type="password" name="password2" placeholder="Confirmar contraseña" id="password2" required>
-            <input class="btn-registrar"action="crear_cuenta" type="submit" name="crear_cuenta" value="Crear Cuenta">
-        </form>
+    <section class="form-main">
+        <div class='form-content'>
+            <div class="box">
+                <form method='post' enctype='multipart/form-data'>
+                    <h3>Crear Cuenta</h3>
+                    <div class="foto-div">
+                        <input required class='foto_circular' type="file" name="foto" id="foto"
+                         accept='image/jpg'>
+                    </div>
+
+                    <div>
+                        <input required class="input-control" type="text" name="nombre" placeholder="Nombre Completo" id="nombre" required>
+                    </div>
+
+                    <div>
+                        <input required class="input-control" type="email" name="correo" placeholder="Correo" id="correo" required>
+                    </div>
+
+                    <div>
+                        <input required class="input-control" type="text" name="telefono" placeholder="Telefono" id="telefono" required>
+                    </div>
+
+                    <div>
+                        <input required class="input-control"type="date" name='fecha_nacimiento' id="fecha_nacimiento">
+                    </div>
+
+                    <div>
+                        <input required class="input-control"type="password" name="password" placeholder="Contraseña" id="password"required>
+                    </div>
+
+                    <div>
+                        <input required class="input-control"type="password" name="password2" placeholder="Confirmar contraseña" id="password2" required>
+                    </div> <br>
+                        <button type="submit" name="crear_cuenta" class="btn">Crear Cuenta</button>
+                </form>
+            </div>
+            <div>
+                <p style="color: wheat;">¿Ya tienes una cuenta? <a href="./iniciar_sesion.php">Inicia sesión</a></p>
+            </div>
         </div>
-        <p>¿Ya tienes una cuenta? <a href="./iniciar_sesion.php">Inicia sesion</a></p>
-    </div>
+    </section>
 </body>
 </html>

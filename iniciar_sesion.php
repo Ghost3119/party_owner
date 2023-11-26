@@ -77,10 +77,10 @@ if (isset($_POST['validar'])) {
         <h3>Bienvenido</h3>
         <form action="iniciar_sesion.php" method='post'>
           <div class="input-box">
-            <input type="text"name='correo' placeholder="Ingresa tu correo" class="input-control" >
+            <input required type="text"name='correo' placeholder="Ingresa tu correo" class="input-control" >
           </div>
           <div class="input-box">
-            <input type="password" name='password' placeholder="Ingresa tu contraseña" class="input-control">
+            <input required type="password" name='password' placeholder="Ingresa tu contraseña" class="input-control">
           </div>
           <button type="submit"name="validar" class="btn">Iniciar Sesión</button>
         </form>

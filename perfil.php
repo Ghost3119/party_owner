@@ -47,10 +47,10 @@ if(isset($_POST['guardarFoto'])){
     }
 }
 if(isset($_POST['editarInfo'])){
-    $inputNombre = '<input type="text" name="nombre" value="'.$nombre.'">';
-    $inputCorreo = '<input type="text" name="correo" value="'.$correo.'">';
-    $inputTelefono = '<input type="text" name="telefono" value="'.$telefono.'">';
-    $inputFechaNacimiento = '<input type="date" name="fechaNacimiento" value="'.$fechaNacimiento.'">';
+    $inputNombre = '<input required type="text" name="nombre" value="'.$nombre.'">';
+    $inputCorreo = '<input required type="text" name="correo" value="'.$correo.'">';
+    $inputTelefono = '<input required type="text" name="telefono" value="'.$telefono.'">';
+    $inputFechaNacimiento = '<input required type="date" name="fechaNacimiento" value="'.$fechaNacimiento.'">';
     $inputGuardar = '<input class="btn1" type="submit" name="guardar" value="Guardar">';
 }
 

@@ -2,6 +2,7 @@
 session_start();
 require_once("conexion.php");
 
+
 if(!isset($_SESSION['correo'])){
     header('Location:index.php');
 }
@@ -18,9 +19,38 @@ $foto = $_SESSION['foto'];
 
 $_SESSION['idEvento'];
 $_SESSION['nombreEvento'];
-$_SESSION['fechaEvento'];
+
+$fechaEvento = DateTime::createFromFormat('Y-m-d', $_SESSION['fechaEvento']);
+$fechaEvento = $fechaEvento->format('Y-m-d');
+$fechaEventoFinal = rtrim($fechaEvento);
 $_SESSION['hora_evento'];
 $_SESSION['ubicacionEvento'];
+
+if(isset($_POST['editar'])){
+    $idEvento = $_SESSION['idEvento'];
+    $nombreEvento = $_POST['nombreEvento'];
+    $fechaEvento = $_POST['fechaEvento'];
+    $hora_evento = $_POST['hora_evento'];
+    $ubicacionEvento = $_POST['ubicacionEvento'];
+
+    $sql = $cnnPDO->prepare('UPDATE eventos SET nombreEvento = :nombreEvento, fechaEvento = :fechaEvento, hora_evento = :hora_evento, ubicacionEvento = :ubicacionEvento WHERE idEvento = :idEvento');
+    $sql->bindParam(':idEvento', $idEvento);
+    $sql->bindParam(':nombreEvento', $nombreEvento);
+    $sql->bindParam(':fechaEvento', $fechaEvento);
+    $sql->bindParam(':hora_evento', $hora_evento);
+    $sql->bindParam(':ubicacionEvento', $ubicacionEvento);
+    $sql->execute();
+
+    $_SESSION['nombreEvento'] = $nombreEvento;
+    $_SESSION['fechaEvento'] = $fechaEvento;
+    $_SESSION['hora_evento'] = $hora_evento;
+    $_SESSION['ubicacionEvento'] = $ubicacionEvento;
+    unset($sql);
+    unset($cnnPDO);
+
+    header('Location: ver_eventos.php');
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -41,28 +71,38 @@ $_SESSION['ubicacionEvento'];
         </a>
         <div class="contenedor-name">
             <a href="./perfil.php">
-                <p>
-                Hola <?php echo $nombre;  ?>
-            </p>
-            <?php echo '<img class="foto-perfil" src="data:foto/png;base64,' . base64_encode($foto) . '"/>'?>
+                <p>Hola <?php echo $nombre; ?></p>
+                <?php echo '<img class="foto-perfil" src="data:foto/png;base64,' . base64_encode($foto) . '"/>' ?>
             </a>
-            <a href="./bienvenido.php">
+            <a href="./ver_eventos.php">
                 <button class='btn1'>Regresar</button>
             </a>
             <form action="" method="post">
-                <input class="btn2" type="submit" name="logout" value="Cerrar sesion">
+                <input class="btn2" type="submit" name="logout" value="Cerrar sesión">
             </form>
         </div>  
-</nav>
-<main>
-    <?php
-    $sql = $conexion->prepare("SELECT * FROM eventos WHERE idEvento = :idEvento");
-    ?>
-    <div class="contenedor">
-        <form action="" method="post">
-
-        </form>
-    </div>
-</main>
+ </nav>
+    <main>
+    <h1 style="color: #2b2c34">Detalles del Evento</h1> <br>
+        <div class="contenedor-evento">
+            <div class="cards">
+                <div class="parrafo">
+                    <form class="form-editar" method="post">
+                    <label for="nombreEvento">Nombre del Evento</label>
+                    <input class="label-editar" required type="text" name="nombreEvento" value="<?php echo $_SESSION['nombreEvento']; ?>">
+                    <label for="fechaEvento">Fecha</label>
+                    <input class="label-editar" required type="date" name="fechaEvento" value="<?php echo $fechaEventoFinal;?>">
+                    <label for="hora_evento">Hora</label>
+                    <input class="label-editar" required type="time" name="hora_evento" value="<?php echo $_SESSION['hora_evento']; ?>">
+                    <label for="ubicacionEvento">Ubicación</label>
+                    <input class="label-editar" required type="text" name="ubicacionEvento" value="<?php echo $_SESSION['ubicacionEvento']; ?>">
+                </div> 
+                    <div class="contenedor-btns">
+                        <input class="btn-editar" type="submit" value="Guardar" name="editar">
+                    </div>
+                </form> 
+            </div>
+        </div>
+    </main>
 </body>
 </html>

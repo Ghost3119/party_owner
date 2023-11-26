@@ -81,9 +81,9 @@ if(isset($_POST['editarInvitado'])){
 <div class="container">
 <form class='form-editar' action="" enctype='multipart/form-data' method="post">
             <label for="invitado">Nombre Invitado</label>
-            <input class="input" id="invitado" type="text" name="nombreInvitado" placeholder="Nombre Invitado" id="invitado" value="<?php echo $nombreInvitado; ?>">
+            <input required class="input" id="invitado" type="text" name="nombreInvitado" placeholder="Nombre Invitado" id="invitado" value="<?php echo $nombreInvitado; ?>">
             <label for="tel-invitado">telefono Invitado</label>
-            <input class="input" type="text" name="telefonoInvitado" id="tel-invitado" placeholder="Telefono invitado" value="<?php echo $telefonoInvitado; ?>">
+            <input required class="input" type="text" name="telefonoInvitado" id="tel-invitado" placeholder="Telefono invitado" value="<?php echo $telefonoInvitado; ?>">
             <input class="btn-editar" name='editarInvitado' action="editarInvitado" type="submit" value="Editar invitado">  
         </form>
 </div>

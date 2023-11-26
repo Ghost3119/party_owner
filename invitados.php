@@ -50,16 +50,73 @@ function borrar_directorio($dirname) {
 	 return true;
 }
 
+function mostrarULR(){
+    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+$link = "https";
+else
+  $link = "http";
+ 
+// Here append the common URL characters.
+$link .= "://";
+ 
+// Append the host(domain name, ip) to the URL.
+$link .= $_SERVER['HTTP_HOST'];
+ 
+// Append the requested resource location to the URL
+$link .= $_SERVER['REQUEST_URI'];
+ 
+// Print the link
+echo $link;
+}
+
 if(isset($_POST['whats'])){
+
+    $idInvitado = $_POST['idInvitado'];
+    $nombreInvitado = $_POST['nombreInvitado'];
+    $telefonoInvitado = $_POST['telefonoInvitado'];
+    $idEvento = $_SESSION['idEvento'];
+    $sql = $cnnPDO->prepare("SELECT qr FROM invitados WHERE idInvitado = '".$_POST['idInvitado']."'");
+    $sql->execute();
+    $campo = $sql->fetch(PDO::FETCH_ASSOC);
+    // Obtén la imagen de la base de datos
+    $qr = $campo['qr'];
+    $tmpPath = tempnam(sys_get_temp_dir(), 'qr');
+    file_put_contents($tmpPath, $qr);
+
+
+    $telIndetificador = '';
+
     //TOKEN QUE NOS DA FACEBOOK
     $token = '';
+
+    $url = 'https://graph.facebook.com/v17.0/'.$telIndetificador.'/messages';
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://graph.facebook.com/v17.0/'.$telIndetificador.'/media',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS => array('messaging_product' => 'whatsapp','file'=> new CURLFILE($tmpPath, 'image/png' , 'qr.png')),
+  CURLOPT_HTTPHEADER => array(
+    'Authorization: Bearer '.$token.''
+  ),
+));
+
+$response = curl_exec($curl);
+$idResponse = json_decode($response, true);
+
+curl_close($curl);
+//echo $response;
+
     //NUESTRO TELEFONO
     $telefono = '52'.$_POST['telefonoInvitado'];
     //URL A DONDE SE MANDARA EL MENSAJE
-    $url = '';
-    
-    $urlImage = 'https://jaircamacho.000webhostapp.com/icons8-meeting-96.png';
-    
+        
     $nombreEveneto = $_SESSION['nombreEvento'];;
     $usuario = $_SESSION['nombre'];
     $fecha = $_SESSION['fechaEvento'];
@@ -82,7 +139,9 @@ if(isset($_POST['whats'])){
             . '             "parameters": ['
             . '                 {'
             . '                     "type": "IMAGE",'
-            . '                     "image": { "link": "'.$urlImage.'" }'
+            . '                      "image": {'
+            . '                      "id" : "'.$idResponse['id'].'"'
+            . '                      }'
             . '                 }'
             . '             ]'
             . '         },'
@@ -114,6 +173,7 @@ if(isset($_POST['whats'])){
             . '     ]'
             . '} '
             . '}';
+    
     //DECLARAMOS LAS CABECERAS
     $header = array("Authorization: Bearer " . $token, "Content-Type: application/json",);
     //INICIAMOS EL CURL
@@ -233,9 +293,9 @@ if(isset($_POST['editar'])){
         <h2>Ubicacion del evento: <?php echo $_SESSION['ubicacionEvento']; ?></h2>
         <form class='form-invitado' action="" enctype='multipart/form-data' method="post">
             <label for="invitado">Nombre Invitado</label>
-            <input class="input-agg" id="invitado" type="text" name="nombreInvitado" placeholder="Nombre Invitado" id="invitado">
+            <input required class="input-agg" id="invitado" type="text" name="nombreInvitado" placeholder="Nombre Invitado" id="invitado">
             <label for="tel-invitado">telefono Invitado</label>
-            <input class="input-agg" type="text" name="telefonoInvitado" id="tel-invitado" placeholder="Telefono invitado">
+            <input required class="input-agg" type="text" name="telefonoInvitado" id="tel-invitado" placeholder="Telefono invitado">
             <input class="btn-editar" name='agregarInvitado' action="agregarInvitado" type="submit" value="Agregar lista inviatdos">  
         </form>
     </div>
@@ -264,6 +324,8 @@ if(isset($_POST['editar'])){
                     echo '<form method="post">'
                     . '<input type="hidden" name="telefonoInvitado" value="'.$campo['telefonoInvitado'].'">'
                     .'<input type="hidden" name="idInvitado" value="'.$campo['idInvitado'].'">'
+                    .'<input type="hidden" name="nombreInvitado" value="'.$campo['nombreInvitado'].'">'
+                    . '<input type="hidden" name="idEvento" value="'.$campo['idEvento'].'">'
                     . '<td class="column-btn">'
                     . '<input class="btn-mensaje" type="submit" value="Enviar WhatsApp" name="whats">'
                     . '<input class="btn-editar" type="submit" value="Editar Invitado" name="editar">'

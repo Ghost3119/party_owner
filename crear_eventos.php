@@ -86,13 +86,13 @@ if(isset($_POST['crear_evento'])){
                 <div class="contenedor-form">
                 <h1>Crear evento</h1>
                 <label for="nombre">Nombre del evento</label>
-                <input type="text" name="nombreEvento" id="nombre" placeholder="Nombre del evento">
+                <input required type="text" name="nombreEvento" id="nombre" placeholder="Nombre del evento">
                 <label for="fecha">Fecha del evento</label>
-                <input type="date" name="fecha" id="fecha">
+                <input required type="date" name="fecha" id="fecha">
                 <label for="hora">Hora del evento</label>
-                <input type="time" name="hora_evento" id="hora">
+                <input required type="time" name="hora_evento" id="hora">
                 <label for="lugar">Lugar del evento</label>
-                <input type="text" name="ubicacionEvento" id="lugar" placeholder="Lugar del evento">
+                <input required type="text" name="ubicacionEvento" id="lugar" placeholder="Lugar del evento">
                 <input type="submit" name="crear_evento" class="btn-crear" action="crear_evento"  value="Crear evento">
                 </div>
                 

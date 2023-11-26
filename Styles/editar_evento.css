@@ -6,6 +6,7 @@
     --secundary: #d1d1e9;
     --tertiary: #e45858;
     --highlight: #6246ea;
+    --whatsapp: #2cb67d;
 }
 
 * {
@@ -56,6 +57,7 @@ a {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
 }
 
 nav a {
@@ -83,6 +85,29 @@ nav a {
     color: var(--main);
 }
 
+.btn-invitado {
+    background-color: var(--main);
+    color: var(--stroke);
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    font-family: 'poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: 0.5s;
+    border: 2px solid;
+    border-color: var(--stroke);
+    transition: 0.5s;
+    width: 100%;
+}
+
+.btn-invitado:hover {
+    background-color: var(--stroke);
+    color: var(--main);
+    border: 2px solid;
+    border-color: var(--stroke);
+}
+
 .btn1 {
     background-color: var(--highlight);
     color: var(--main);
@@ -103,4 +128,155 @@ nav a {
     color: var(--highlight);
     border: 2px solid;
     border-color: var(--highlight);
+}
+
+.contenedor-evento {
+    border-color: var(--tertiary);
+    border: none;
+    padding: 40px 50px;
+    border-radius: 20px;
+    backdrop-filter: var(--stroke);
+    background-color: var(--main);
+    opacity: 90%;
+    width: 25%;
+    margin: 0 auto;
+    font-size: 20px;
+
+}
+
+main h1 {
+    color: var(--secundary);
+    font-size: 2rem;
+    font-weight: 900;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.btn-eliminar {
+    background-color: var(--tertiary);
+    color: var(--main);
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    font-family: 'poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: 0.5s;
+    border: 2px solid;
+    border-color: var(--tertiary);
+    transition: 0.5s;
+    width: 100%;
+}
+
+.btn-eliminar:hover {
+    background-color: var(--main);
+    color: var(--tertiary);
+    border: 2px solid;
+    border-color: var(--tertiary);
+}
+
+
+.btn-editar {
+    background-color: var(--highlight);
+    color: var(--main);
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    font-family: 'poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: 0.5s;
+    border: 2px solid;
+    border-color: var(--highlight);
+    transition: 0.5s;
+    width: 100%;
+}
+
+.btn-editar:hover {
+    background-color: var(--main);
+    color: var(--highlight);
+    border: 2px solid;
+    border-color: var(--highlight);
+}
+
+.btn-mensaje {
+    background-color: var(--whatsapp);
+    color: var(--main);
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    font-family: 'poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: 0.5s;
+    border: 2px solid;
+    border-color: var(--whatsapp);
+    transition: 0.5s;
+    width: 100%;
+}
+
+.btn-mensaje:hover {
+    background-color: var(--main);
+    color: var(--whatsapp);
+    border: 2px solid;
+    border-color: var(--whatsapp);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.input-agg {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    border: 2px solid;
+    border-color: var(--stroke);
+    font-family: 'poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--stroke);
+    margin-bottom: 1rem;
+}
+
+label {
+    font-weight: 500;
+    font-size: 1.25rem;
+    color: var(--stroke);
+}
+
+.contenedor-btns {
+    margin-top: 1rem;
+    gap: 1rem;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.contenedor-btns form {
+    margin-bottom: 1rem;
+}
+
+.label-editar {
+    width: 90%;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    border: 2px solid;
+    border-color: var(--stroke);
+    font-family: 'poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--stroke);
+    margin-bottom: 1rem;
+}
+
+.form-editar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
