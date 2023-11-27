@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<!-- Icono del Sitio Web -->
 	<link rel="icon" href="./assets/icons8-meeting.svg">
+	<link rel="icon" href="../assets/icons8-meeting.svg">
 	
 </head>
 <body>

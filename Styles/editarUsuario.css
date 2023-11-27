@@ -44,22 +44,6 @@ a {
     color: var(--stroke);
 }
 
-.btn-cerrar-sesion {
-    background-color: var(--main);
-    color: var(--stroke);
-    padding: 0.75rem 1rem;
-    cursor: pointer;
-    border-radius: 0.5rem;
-    font-family: 'poppins', sans-serif;
-    font-weight: 400;
-    transition: 0.5s;
-    margin-left: 1rem;
-}
-
-.btn-cerrar-sesion:hover {
-    background-color: var(--stroke);
-    color: var(--main);
-}
 
 .contenedor-name {
     display: flex;
@@ -157,4 +141,45 @@ nav a {
     color: var(--tertiary);
     border: 2px solid;
     border-color: var(--tertiary);
+}
+
+.btn2 {
+    background-color: var(--main);
+    color: var(--stroke);
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    font-family: 'poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: 0.5s;
+    margin-left: 1rem;
+}
+
+.btn2:hover {
+    background-color: var(--stroke);
+    color: var(--main);
+}
+
+.btn1 {
+    background-color: var(--highlight);
+    color: var(--main);
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    font-family: 'poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: 0.5s;
+    border: 2px solid;
+    border-color: var(--highlight);
+    margin-left: 1rem;
+}
+
+
+.btn1:hover {
+    background-color: var(--main);
+    color: var(--highlight);
+    border: 2px solid;
+    border-color: var(--highlight);
 }

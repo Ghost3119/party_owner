@@ -283,7 +283,7 @@ if(isset($_POST['editar'])){
         <h2>Lista de invitados</h2>
         <table>
             <tr>
-                <th>Id</th>
+            <!--    <th>Id</th> -->
                 <th>Nombre</th>
                 <th>Telefono</th>
                 <th>QR</th>
@@ -295,7 +295,7 @@ if(isset($_POST['editar'])){
                 $sql->execute();
                 while($campo = $sql->fetch(PDO::FETCH_ASSOC)){
                     echo '<tr>';
-                    echo '<td>' . $campo['idInvitado'] . '</td>';
+                    $campo['idInvitado'];
                     echo '<td>' . $campo['nombreInvitado'] . '</td>';
                     echo '<td>' . $campo['telefonoInvitado'] . '</td>';
                     echo '<td>' .

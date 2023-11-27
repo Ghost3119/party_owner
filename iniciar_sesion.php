@@ -20,17 +20,24 @@ if (isset($_POST['validar'])) {
 
 
     if ($count) {
-        $_SESSION['idUsuario'] = $campo['idUsuario'];
-        $_SESSION['correo'] = $correo;
-        $_SESSION['nombre'] = $campo['nombre'];
-        $_SESSION['telefono'] = $campo['telefono'];
-        $_SESSION['fechaNacimiento'] = $campo['fechaNacimiento'];
-        $_SESSION['foto'] = $campo['foto'];
-        $_SESSION['isActive'] =$campo['isActive'];
         if ($correo == 'admin@admin.com') {
+            $_SESSION['idUsuarioAdmin'] = $campo['idUsuario'];
+            $_SESSION['correoAdmin'] = $correo;
+            $_SESSION['nombreAdmin'] = $campo['nombre'];
+            $_SESSION['telefonoAdmin'] = $campo['telefono'];
+            $_SESSION['fechaNacimientoAdmin'] = $campo['fechaNacimiento'];
+            $_SESSION['fotoAdmin'] = $campo['foto'];
+            $_SESSION['isActiveAdmin'] =$campo['isActive'];
             header("location: ./admin/admin.php");
             exit();
         } else {
+            $_SESSION['idUsuario'] = $campo['idUsuario'];
+            $_SESSION['correo'] = $correo;
+            $_SESSION['nombre'] = $campo['nombre'];
+            $_SESSION['telefono'] = $campo['telefono'];
+            $_SESSION['fechaNacimiento'] = $campo['fechaNacimiento'];
+            $_SESSION['foto'] = $campo['foto'];
+            $_SESSION['isActive'] =$campo['isActive'];
             header("location: ./bienvenido.php");
             exit();
         }

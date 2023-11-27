@@ -65,7 +65,7 @@ $foto = $_SESSION['foto'];
             echo '<div class="cards">';
             echo '<form method="post">';
             echo '<h2>' . $campo['nombreEvento'] . '</h2>';
-            echo '<p>'. $campo['idEvento'].'</p>';
+            $campo['idEvento'];
             echo '<p>' . $campo['fechaEvento'] . '</p>';
             echo '<p>' . $campo['hora_evento'] . '</p>';
             echo '<p>' . $campo['ubicacionEvento'] . '</p>

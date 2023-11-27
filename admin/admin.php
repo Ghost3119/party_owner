@@ -2,11 +2,15 @@
 session_start();
 
 require_once '../conexion.php';
-$nombre = $_SESSION['nombre'];
-$correo = $_SESSION['correo'];
-$telefono = $_SESSION['telefono'];
-$fechaNacimiento = $_SESSION['fechaNacimiento'];
-if(!isset($_SESSION['correo'])){
+$idUsuarioAdmin = $_SESSION['idUsuarioAdmin'];
+$nombreAdmin = $_SESSION['nombreAdmin'];
+$correoAdmin = $_SESSION['correoAdmin'];
+$telefonoAdmin = $_SESSION['telefonoAdmin'];
+$fechaNacimientoAdmin = $_SESSION['fechaNacimientoAdmin'];
+$fotoAdmin = $_SESSION['fotoAdmin'];
+$isActiveAdmin = $_SESSION['isActiveAdmin'];
+
+if(!isset($_SESSION['correoAdmin'])){
     header('Location:../index.php');
 }
 if(isset($_POST['logout'])){
@@ -15,7 +19,7 @@ if(isset($_POST['logout'])){
 }
 if (isset($_POST['desactiva'])) 
 {
-    if($_POST['correo'] == $_SESSION['correo']){
+    if($_POST['correo'] == $_SESSION['correoAdmin']){
         $alerta = "<div class='alerta'>No puedes bloquearte a ti mismo</div>";
     }else{
         $correo =$_POST['correo'];
@@ -45,7 +49,7 @@ if (isset($_POST['activa']))
 }
 if(isset($_POST['eliminar'])){
 
-    if($_POST['correo'] == $_SESSION['correo']){
+    if($_POST['correo'] == $_SESSION['correoAdmin']){
         $alerta = "<div class='alerta'>No puedes eliminarte a ti mismo</div>";
     }else{
     $idUsuario = $_POST['idUsuario'];
@@ -57,7 +61,7 @@ if(isset($_POST['eliminar'])){
 }
 }
 if(isset($_POST['editar'])){
-    if($_POST['correo'] == $_SESSION['correo']){
+    if($_POST['correo'] == $_SESSION['correoAdmin']){
         $alerta = "<div class='alerta'>No puedes editarte a ti mismo</div>";
     }else{
 
@@ -94,7 +98,7 @@ if(isset($_POST['editar'])){
         <div class="contenedor-name">
             <a href="./admin.php">
                 <p>
-                Hola <?php echo $nombre;  ?>
+                Hola <?php echo $nombreAdmin;  ?>
             </p>
             </a>
             <form action="admin.php" method="post">

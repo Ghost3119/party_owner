@@ -2,18 +2,21 @@
 session_start();
 
 require_once '../conexion.php';
-$_SESSION['nombre'];
-$_SESSION['correo'];
-$_SESSION['telefono'];
-$_SESSION['fechaNacimiento'];
+
+$idUsuarioAdmin = $_SESSION['idUsuarioAdmin'];
+$nombreAdmin = $_SESSION['nombreAdmin'];
+$correoAdmin = $_SESSION['correoAdmin'];
+$telefonoAdmin = $_SESSION['telefonoAdmin'];
+$fechaNacimientoAdmin = $_SESSION['fechaNacimientoAdmin'];
+$fotoAdmin = $_SESSION['fotoAdmin'];
+$isActiveAdmin = $_SESSION['isActiveAdmin'];
 
 $idEditar = $_SESSION['idUsuarioEditar'];
 $nombreEditar = $_SESSION['nombreEditar'];
 $correoEditar = $_SESSION['correoEditar'];
 $telefonoEditar = $_SESSION['telefonoEditar'];
 
-
-if(!isset($_SESSION['correo'])){
+if(!isset($_SESSION['correoAdmin'])){
     header('Location:../index.php');
 }
 if(isset($_POST['logout'])){
@@ -63,11 +66,14 @@ if(isset($_POST['editar'])){
         <div class="contenedor-name">
             <a href="./admin.php">
                 <p>
-                Hola <?php echo $_SESSION['nombre'];  ?>
+                Hola <?php echo $nombreAdmin;  ?>
             </p>
             </a>
+            <a href="./admin.php">
+                <button class='btn1'>Regresar</button>
+            </a>
             <form action="admin.php" method="post">
-                <input class="btn-cerrar-sesion" type="submit" name="logout" value="Cerrar sesion">
+                <input class="btn2" type="submit" name="logout" value="Cerrar sesion">
             </form>
         </div>  
 </nav>
