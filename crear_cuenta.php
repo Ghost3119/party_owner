@@ -11,10 +11,10 @@ require 'PHPMailer/SMTP.php';
 
 
 if(isset($_POST['crear_cuenta'])){
-    $nombre = $_POST['nombre'];
-    $correo = $_POST['correo'];
-    $password = $_POST['password'];
-    $telefono = $_POST['telefono'];
+    $nombre = trim($_POST['nombre']);
+    $correo = trim($_POST['correo']);
+    $password = trim($_POST['password']);
+    $telefono = trim($_POST['telefono']);
     $fechaNacimiento = $_POST['fecha_nacimiento'];
     $size = getimagesize($_FILES["foto"]["tmp_name"]);
     $isActive = 'si';
@@ -82,7 +82,7 @@ if(isset($_POST['crear_cuenta'])){
             </div>";
         }
     }else{
-        echo "<script>alert('Faltan campos por llenar')</script>";
+        header('Location: ./crear_cuenta.php');
     }
 }
 ?>

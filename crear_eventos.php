@@ -21,10 +21,10 @@ $foto = $_SESSION['foto'];
 
 if(isset($_POST['crear_evento'])){
     $idEvento = uniqid();
-    $nombreEvento = $_POST['nombreEvento'];
-    $fechaEvento = $_POST['fecha'];
+    $nombreEvento = trim($_POST['nombreEvento']);
+    $fechaEvento = trim($_POST['fecha']);
     $hora_evento = $_POST['hora_evento'];
-    $ubicacionEvento = $_POST['ubicacionEvento'];
+    $ubicacionEvento = trim($_POST['ubicacionEvento']);
 
     if(!empty($nombreEvento) && !empty($fechaEvento) && !empty($hora_evento) && !empty($ubicacionEvento)){
         $idEvento = uniqid();
@@ -42,7 +42,7 @@ if(isset($_POST['crear_evento'])){
         header('Location: ./ver_eventos.php');
 
     }else{
-        echo "<script>alert('Faltan campos por llenar')</script>";
+        header('Location: ./crear_eventos.php');
     }
 }
 

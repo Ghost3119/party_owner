@@ -56,9 +56,9 @@ if(isset($_POST['editarInfo'])){
 
 if(isset($_POST['guardar'])){
     $idUsuario = $_SESSION['idUsuario'];
-    $nombre = $_POST['nombre'];
-    $correo = $_POST['correo'];
-    $telefono = $_POST['telefono'];
+    $nombre = trim($_POST['nombre']);
+    $correo = trim($_POST['correo']);
+    $telefono = trim($_POST['telefono']);
     $fechaNacimiento = $_POST['fechaNacimiento'];
     if(!empty($nombre) && !empty($correo) && !empty($telefono) && !empty($fechaNacimiento)){
         $sql = $cnnPDO->prepare('UPDATE usuarios SET nombre = :nombre, correo = :correo, telefono = :telefono, fechaNacimiento = :fechaNacimiento WHERE idUsuario = :idUsuario');
@@ -78,7 +78,7 @@ if(isset($_POST['guardar'])){
         $_SESSION['fechaNacimiento'] = $fechaNacimiento;
         header('Location: perfil.php');
     }else{
-        echo "<script>alert('No se pudo actualizar')</script>";
+        header('Location: perfil.php');
     }
 }
 

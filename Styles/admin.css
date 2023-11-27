@@ -197,3 +197,80 @@ table th {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
+
+.btn-editar {
+    width: 100%;
+    background-color: var(--highlight);
+    color: var(--main);
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    font-family: 'poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: 0.5s;
+    border: 2px solid;
+    border-color: var(--highlight);
+    transition: 0.5s;
+}
+
+.btn-editar:hover {
+    background-color: var(--main);
+    color: var(--highlight);
+    border: 2px solid;
+    border-color: var(--highlight);
+}
+
+.btn-eliminar {
+    width: 100%;
+    background-color: #a71e1e;
+    color: var(--main);
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    font-family: 'poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: 0.5s;
+    border: 2px solid;
+    border-color: #a71e1e;
+    transition: 0.5s;
+}
+
+.btn-eliminar:hover {
+    background-color: var(--main);
+    color: #a71e1e;
+    border: 2px solid;
+    border-color: #a71e1e;
+}
+
+.btn-desbloquea {
+    width: 100%;
+    background-color: #2cb67d;
+    color: var(--main);
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    font-family: 'poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: 0.5s;
+    border: 2px solid;
+    border-color: #2cb67d;
+    transition: 0.5s;
+}
+
+.btn-desbloquea:hover {
+    background-color: var(--main);
+    color: #2cb67d;
+    border: 2px solid;
+    border-color: #2cb67d;
+}
+
+.acciones {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+}

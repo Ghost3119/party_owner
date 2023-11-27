@@ -30,8 +30,8 @@ if(isset($_POST['logout'])){
 }
 
 if(isset($_POST['editarInvitado'])){
-    $nombreInvitado = $_POST['nombreInvitado'];
-    $telefonoInvitado = $_POST['telefonoInvitado'];
+    $nombreInvitado = trim($_POST['nombreInvitado']);
+    $telefonoInvitado = trim($_POST['telefonoInvitado']);
     $idInvitado = $_SESSION['idInvitado'];
     if(!empty($nombreInvitado) && !empty($telefonoInvitado)){
         $sql = $cnnPDO->prepare('UPDATE invitados SET nombreInvitado = :nombreInvitado, telefonoInvitado = :telefonoInvitado WHERE idInvitado = :idInvitado');
@@ -41,7 +41,9 @@ if(isset($_POST['editarInvitado'])){
         $sql->execute();
         unset($sql);
         unset($cnnPDO);
-        header('Location:invitados.php');
+        header('Location:./invitados.php');
+    }else{
+        header('Location:./invitados.php');
     }
 }
 ?>

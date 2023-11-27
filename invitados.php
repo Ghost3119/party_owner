@@ -50,30 +50,11 @@ function borrar_directorio($dirname) {
 	 return true;
 }
 
-function mostrarULR(){
-    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
-$link = "https";
-else
-  $link = "http";
- 
-// Here append the common URL characters.
-$link .= "://";
- 
-// Append the host(domain name, ip) to the URL.
-$link .= $_SERVER['HTTP_HOST'];
- 
-// Append the requested resource location to the URL
-$link .= $_SERVER['REQUEST_URI'];
- 
-// Print the link
-echo $link;
-}
-
 if(isset($_POST['whats'])){
 
     $idInvitado = $_POST['idInvitado'];
-    $nombreInvitado = $_POST['nombreInvitado'];
-    $telefonoInvitado = $_POST['telefonoInvitado'];
+    $nombreInvitado = trim($_POST['nombreInvitado']);
+    $telefonoInvitado = trim($_POST['telefonoInvitado']);
     $idEvento = $_SESSION['idEvento'];
     $sql = $cnnPDO->prepare("SELECT qr FROM invitados WHERE idInvitado = '".$_POST['idInvitado']."'");
     $sql->execute();
@@ -90,7 +71,7 @@ if(isset($_POST['whats'])){
     $token = '';
 
     $url = 'https://graph.facebook.com/v17.0/'.$telIndetificador.'/messages';
-$curl = curl_init();
+    $curl = curl_init();
 
 curl_setopt_array($curl, array(
   CURLOPT_URL => 'https://graph.facebook.com/v17.0/'.$telIndetificador.'/media',
@@ -113,9 +94,8 @@ $idResponse = json_decode($response, true);
 curl_close($curl);
 //echo $response;
 
-    //NUESTRO TELEFONO
+    //TELEFONO DONDE SE ENVIARA EL MENSAJE
     $telefono = '52'.$_POST['telefonoInvitado'];
-    //URL A DONDE SE MANDARA EL MENSAJE
         
     $nombreEveneto = $_SESSION['nombreEvento'];;
     $usuario = $_SESSION['nombre'];
@@ -208,8 +188,8 @@ function generarQR($invitadoQR){
 
 if(isset($_POST['agregarInvitado'])){           
     $idInvitado = uniqid();
-    $nombreInvitado = $_POST['nombreInvitado'];
-    $telefonoInvitado = $_POST['telefonoInvitado'];
+    $nombreInvitado = trim($_POST['nombreInvitado']);
+    $telefonoInvitado = trim($_POST['telefonoInvitado']);
     $idEvento = $_SESSION['idEvento'];
     $qr = generarQR($idInvitado.$nombreInvitado.$telefonoInvitado.$idEvento);
     

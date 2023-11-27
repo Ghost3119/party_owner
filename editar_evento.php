@@ -28,10 +28,10 @@ $_SESSION['ubicacionEvento'];
 
 if(isset($_POST['editar'])){
     $idEvento = $_SESSION['idEvento'];
-    $nombreEvento = $_POST['nombreEvento'];
+    $nombreEvento = trim($_POST['nombreEvento']);
     $fechaEvento = $_POST['fechaEvento'];
     $hora_evento = $_POST['hora_evento'];
-    $ubicacionEvento = $_POST['ubicacionEvento'];
+    $ubicacionEvento = trim($_POST['ubicacionEvento']);
 
     $sql = $cnnPDO->prepare('UPDATE eventos SET nombreEvento = :nombreEvento, fechaEvento = :fechaEvento, hora_evento = :hora_evento, ubicacionEvento = :ubicacionEvento WHERE idEvento = :idEvento');
     $sql->bindParam(':idEvento', $idEvento);

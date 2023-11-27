@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'conexion.php';
+require_once './conexion.php';
 $error = '<div></div>';
 if (isset($_POST['validar'])) {
     $correo = $_POST['correo'];
@@ -28,10 +28,10 @@ if (isset($_POST['validar'])) {
         $_SESSION['foto'] = $campo['foto'];
         $_SESSION['isActive'] =$campo['isActive'];
         if ($correo == 'admin@admin.com') {
-            header("location: admin.php");
+            header("location: ./admin/admin.php");
             exit();
         } else {
-            header("location: bienvenido.php");
+            header("location: ./bienvenido.php");
             exit();
         }
     } else {
