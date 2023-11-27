@@ -82,6 +82,16 @@ if(isset($_POST['guardar'])){
     }
 }
 
+if(isset($_POST['eliminar'])){
+    $idUsuario = $_SESSION['idUsuario'];
+    $sql = $cnnPDO->prepare("DELETE FROM eventos WHERE idUsuario = '$idUsuario'");
+    $sql->execute();
+    $sql = $cnnPDO->prepare("DELETE FROM usuarios WHERE idUsuario = '$idUsuario'");
+    $sql->execute();
+    session_destroy();
+    header('Location:index.php');
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -140,6 +150,12 @@ if(isset($_POST['guardar'])){
                     <?php echo isset($_POST['editarInfo']) ? $inputGuardar: ''?>
                     </div>
             </form>    
+        </div>
+        <div class="container-eliminar">
+            <h2>¿Desea eliminar su Cuenta?</h2>
+            <form method="post">
+                <input class="btn-eliminar" type="submit" name="eliminar" value="Eliminar cuenta">
+            </form>
         </div>
     </main>    
 </body>
